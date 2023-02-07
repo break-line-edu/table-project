@@ -18,9 +18,8 @@ import { intersection } from 'lodash';
 export const getCollection = async (params) =>
   new Promise((resolve) => {
     try {
-      console.log(params);
-
-      const { functions, segments, page, limit } = params || {};
+      const { functions, segments, page } = params || {};
+      const limit = 10;
 
       let filteredItems = data.items;
 
