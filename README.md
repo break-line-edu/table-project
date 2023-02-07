@@ -1,25 +1,63 @@
 # Table Pagination & Filters via URL Params
 
-The goal of this take home assessment is to finish the setup of pagination and filtering for a table. You must use URL query parameters to store state.
+The goal of this take home assessment is to finish the setup of pagination and filtering for a table. You must use URL query parameters to store the state (Whether or not the table is loading is an exception).
 
 ![example of project running](public/example.png)
 
-### Definitions
+### Assumptions
 
 - Page: the current page the table is on
 - Limit: the number of rows per page to display
+- There is only two filters, functions and segments.
+- The data returned from getCollection() is in the following format:
+
+```json
+{
+  "items": [
+    {
+      "id": 13426,
+      "title": "Mission Success",
+      "functions": ["DefTech", "Customer Success"],
+      "segments": ["DefTech Technology Adoption"]
+    },
+    {
+      "id": 85492,
+      "title": "Mission Development",
+      "functions": ["DefTech", "Customer Success", "Sales"],
+      "segments": ["DefTech Sales"]
+    }
+    ...
+  ],
+  "total": 230
+}
+```
 
 ### Requirements
 
-- You create a custom hook to handle the table logic (page, limit, data, etc).
+- You create a custom hook to handle the table logic (URL state, fetching data using `getCollection`, etc).
 - You use URL Query Parameters to preserve state (purpose: you could send the URL to someone and the table loads the data according to specified query parameters)
 - You can navigate forward and backward in history and the table loads accordingly
 - Adding/Removing a filter sets you back to page 1
 
 ### Nice to Haves
 
+- You track whether or not the table is loading (`progressPending` prop for Table)
 - Logic to handle multiple tables on page
 - Prettier UI
+
+### Fetching Data
+
+There is a `getCollection` function inside `/data/api`. It accepts a single parameter, an object containing the current table parameters.
+
+An example of params might be:
+
+```json
+{
+  "page": 1,
+  "functions": ["Software Engineering", "Customer Success"],
+  "segments": ["Full-Stack Engineering"]
+}
+```
 
 ### The Existing Components
 
@@ -50,9 +88,9 @@ The pagination component displays controls for moving backward and forward betwe
 
 The table component displays a table using `react-data-table-component`.
 
-| Prop              | Type      | Description                                                       |
-| :---------------- | :-------- | :---------------------------------------------------------------- |
-| `columns`         | `array`   | **Required**. An array of columns to use for displaying the data. |
-| `total`           | `number`  | The total number of results in the data.                          |
-| `data`            | `array`   | An array of data to display.                                      |
-| `progressPending` | `boolean` | A boolean indicating if the table is loading.                     |
+| Prop              | Type      | Description                                                                                                     |
+| :---------------- | :-------- | :-------------------------------------------------------------------------------------------------------------- |
+| `columns`         | `array`   | **Required**. An array of columns to use for displaying the data.                                               |
+| `total`           | `number`  | The total number of results in the data.                                                                        |
+| `data`            | `array`   | An array of data to display. This will always be the `items` property of the data returned from getCollection() |
+| `progressPending` | `boolean` | A boolean indicating if the table is loading.                                                                   |
