@@ -4,11 +4,15 @@ The goal of this take home assessment is to finish the setup of pagination and f
 
 ![example of project running](public/example.png)
 
-### Assumptions
-
+### Definitions
 - Page: the current page the table is on
 - Limit: the number of rows per page to display
-- There is only two filters, functions and segments.
+
+### Assumptions
+- The pagination component is already built
+- The table component is already built
+- The filter box component is already built
+- You only need to worry about the two filters, functions and segments.
 - The data returned from getCollection() is in the following format:
 
 ```json
@@ -35,7 +39,7 @@ The goal of this take home assessment is to finish the setup of pagination and f
 ### Requirements
 
 - You create a custom hook to handle the table logic (URL state, fetching data using `getCollection`, etc).
-- You use URL Query Parameters to preserve state (purpose: you could send the URL to someone and the table loads the data according to specified query parameters)
+- You use URL Query Parameters to preserve state (purpose: you should be able to send the URL to someone and the table loads the data according to the specified query parameters)
 - You can navigate forward and backward in history and the table loads accordingly
 - Adding/Removing a filter sets you back to page 1
 
