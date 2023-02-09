@@ -13,6 +13,7 @@ The goal of this take home assessment is to finish the setup of pagination and f
 - The table component is already built
 - The filter box component is already built
 - You only need to worry about the two filters, functions and segments.
+- You do not need to worry about changing/tracking the limit
 - The data returned from getCollection() is in the following format:
 
 ```json
